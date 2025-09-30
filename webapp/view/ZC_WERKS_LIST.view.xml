@@ -1,0 +1,11 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="plantlistmodule.controller.ZC_WERKS_LIST">
+    <Page id="page" title="{i18n>title}">
+    <content>
+        <List noDataText="Drop list items here" id="list0" items="{/ZC_WERKS_LIST}">
+            <items>
+                <StandardListItem type="Navigation" title="{werks}" description="Description: {name1}" icon="sap-icon://picture" id="item0"/>
+            </items>
+        </List>
+    </content>
+    </Page>
+</mvc:View>

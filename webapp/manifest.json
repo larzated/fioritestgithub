@@ -1,0 +1,137 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "plantlistmodule",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.5",
+      "toolsId": "207e7726-8faf-4171-962d-137dd7055325"
+    },
+    "dataSources": {
+      "ZC_WERKS_LIST_CDS_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_WERKS_LIST_CDS_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZC_WERKS_LIST_CDS_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZC_WERKS_LIST_CDS/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZC_WERKS_LIST_CDS_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "object-display": {
+          "semanticObject": "object",
+          "action": "display",
+          "title": "{{object-display.flpTitle}}",
+          "subTitle": "{{object-display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.34",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "plantlistmodule.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "plantlistmodule.view",
+        "async": true,
+        "viewPath": "plantlistmodule.view"
+      },
+      "routes": [
+        {
+          "name": "RouteZC_WERKS_LIST",
+          "pattern": ":?query:",
+          "target": [
+            "TargetZC_WERKS_LIST"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetZC_WERKS_LIST": {
+          "id": "ZC_WERKS_LIST",
+          "name": "ZC_WERKS_LIST"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "plantlistmodule.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
